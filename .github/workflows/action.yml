@@ -18,7 +18,7 @@ jobs:
         echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
     - name: Build the Docker image and Publish
       run: |
-        docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
   deploy:
