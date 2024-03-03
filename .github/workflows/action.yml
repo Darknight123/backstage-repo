@@ -16,7 +16,7 @@ jobs:
         echo "github_owner=`echo ${{github.actor}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
       env:
        OWNER: ${github_owner}
-       IMAGE_NAME: ${OWNER}/hello-world:latest
+       IMAGE_NAME: ${{ env.OWNER }}/hello-world:latest
     - uses: actions/checkout@v3
     - name: Login
       run: |
@@ -37,7 +37,7 @@ jobs:
         echo "github_owner=`echo ${{github.actor}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
       env:
        OWNER: ${github_owner}
-       IMAGE_NAME: ${OWNER}/hello-world:latest
+       IMAGE_NAME: ${{ env.OWNER }}/hello-world:latest
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
