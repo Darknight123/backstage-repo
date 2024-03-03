@@ -29,16 +29,13 @@ jobs:
   deploy:
     needs: publish
     name: deploy image
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: set lower case owner name
       run: |
         echo "github_owner=`echo ${{github.actor}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
         echo "IMAGE_NAME=`echo ${{ env.github_owner }}/hello-world:latest`" >>${GITHUB_ENV}
-      env:
-       OWNER: ${github_owner}
-       IMAGE_NAME: ${{ env.github_owner }}/hello-world:latest
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
