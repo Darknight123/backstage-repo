@@ -14,7 +14,7 @@ jobs:
     - name: set lower case owner name
       run: |
         echo "github_owner=`echo ${{github.actor}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
-        echo "IMAGE_NAME=`echo ${{ env.github_owner }}/hello-world:latest`" >>${GITHUB_ENV}
+        echo "IMAGE_NAME=`echo ${{env.github_owner}}/hello-world:latest`" >>${GITHUB_ENV}
     - uses: actions/checkout@v3
     - name: Login
       run: |
