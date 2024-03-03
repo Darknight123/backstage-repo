@@ -5,13 +5,18 @@ on:
     branches: [ "main" ]
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.actor }}/hello-world:latest
 jobs:
   publish:
     name: publish image
     runs-on: ubuntu-latest
 
     steps:
+    - name: set lower case owner name
+      run: |
+        echo "github_owner=${github.actor,,}" >>${GITHUB_ENV}
+      env:
+       OWNER: '${{ github_owner }}'
+       IMAGE_NAME: ${{ OWNER }}/hello-world:latest
     - uses: actions/checkout@v3
     - name: Login
       run: |
@@ -27,6 +32,12 @@ jobs:
     runs-on: ubuntu:latest
 
     steps:
+    - name: set lower case owner name
+      run: |
+        echo "github_owner=${github.actor,,}" >>${GITHUB_ENV}
+      env:
+       OWNER: '${{ github_owner }}'
+       IMAGE_NAME: ${{ OWNER }}/hello-world:latest
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
