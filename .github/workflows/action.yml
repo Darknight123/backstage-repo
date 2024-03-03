@@ -38,13 +38,6 @@ jobs:
     - name: set image name
       run: |
         echo "IMAGE_NAME=`echo ${{ env.github_owner }}/hello-world:latest`" >>${GITHUB_ENV}
-    - name: Install SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        name: id_rsa # optional
-        known_hosts: ${{ secrets.SSH_HOST }}
-        if_key_exists: ignore
     - name: connect it and publish
       run: "cd ${{ secrets.WORK_DIR }} && docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} && docker run -p 80:80 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
     - name: cleanup step
