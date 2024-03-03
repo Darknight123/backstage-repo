@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: $ {{ github.actor }}/hello-world:latest
+  IMAGE_NAME: ${{ github.actor }}/hello-world:latest
 jobs:
   publish:
     name: publish image
