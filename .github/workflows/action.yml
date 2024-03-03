@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: set lower case owner name
       run: |
-        echo "github_owner=${github.actor,,}" >>${GITHUB_ENV}
+        echo "github_owner=`echo ${{github.actor}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
       env:
        OWNER: '${github_owner}'
        IMAGE_NAME: ${OWNER}/hello-world:latest
@@ -34,7 +34,7 @@ jobs:
     steps:
     - name: set lower case owner name
       run: |
-        echo "github_owner=${github.actor,,}" >>${GITHUB_ENV}
+        echo "github_owner=`echo ${{github.actor}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
       env:
        OWNER: '${github_owner}'
        IMAGE_NAME: ${OWNER}/hello-world:latest
