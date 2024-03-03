@@ -40,8 +40,7 @@ jobs:
         echo "IMAGE_NAME=`echo ${{ env.github_owner }}/hello-world:latest`" >>${GITHUB_ENV}
     - name: install ssh keys
       run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        ls -lrt ~/.ssh/id_rsa
+        mkdir -p ~/.ssh/
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         cat ~/.ssh/id_rsa
         ssh-keyscan -H ${{secrets.SSH_HOST }} > ~/.ssh/known_hosts
