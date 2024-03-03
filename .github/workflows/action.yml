@@ -44,6 +44,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         name: id_rsa # optional
         known_hosts: ${{ secrets.SSH_HOST }}
+        if_key_exists: ignore
     - name: connect it and publish
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} && docker run -it -p 80:80 ${{ env.IMAGE_NAME }}"
     - name: cleanup step
