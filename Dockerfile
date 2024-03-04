@@ -1,14 +1,9 @@
-#Use the official openjdk image as the base image
-FROM openjdk:11-jdk-slim
+FROM nginx:1.10.1-alpine
 
-#Set the working directory in the Docker container
-WORKDIR /app
+Add index.html /usr/share/nginx/html/index.html
 
-#Copy the HelloWorld.java file into the Docker container
-COPY HelloWorld.java .
+# Override the nginx start from the base container
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-#Compile the HelloWorld.java file
-RUN javac HelloWorld.java
-
-#Specify the command to run when the Docker container starts
-CMD ["java", "HelloWorld"]
+ENTRYPOINT ["/start.sh"]
