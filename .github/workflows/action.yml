@@ -39,7 +39,7 @@ jobs:
       run: |
         echo "IMAGE_NAME=`echo ${{ env.github_owner }}/hello-world:latest`" >>${GITHUB_ENV}
     - name: connect it and publish
-      run: "cd ${{ secrets.WORK_DIR }} && docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} && docker run -it -p 80:80 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
+      run: "cd ${{ secrets.WORK_DIR }} && docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} && docker run -d -p 80:80 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
     - name: cleanup step
       run: rm -rf ~/.ssh
   
